@@ -1,0 +1,24 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: ana-postgres
+    environment:
+      POSTGRES_DB: ana
+      POSTGRES_USER: ana
+      POSTGRES_PASSWORD: ana
+    ports:
+    - "5432:5432"
+    volumes:
+    - ana_postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:8
+    container_name: ana-redis
+    ports:
+    - "6379:6379"
+    volumes:
+    - ana_redis_data:/data
+
+volumes:
+  ana_postgres_data:
+  ana_redis_data:

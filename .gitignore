@@ -1,0 +1,30 @@
+# env
+.env
+.env.*
+!.env.example
+
+# node
+node_modules/
+.next/
+dist/
+build/
+
+# python
+.venv/
+__pycache__/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# docker/db/storage
+postgres_data/
+redis_data/
+storage/uploads/
+storage/workspaces/
+
+# logs
+*.log
+
+# ide
+.idea/
+.vscode/
