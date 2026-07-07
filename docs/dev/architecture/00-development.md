@@ -1,60 +1,3 @@
-# Como desenvolver?
-
-Sempre leia este documente antes de começar a codificar.
-
-# Filosofia de Implementação
-
-Preferir:
-
-- código simples
-- baixo acoplamento
-- módulos pequenos
-- responsabilidade única
-- alta legibilidade
-- Use princípios SOLID
-- cobertura de testes automatizados
-
-Evitar:
-
-- abstrações prematuras
-- arquitetura excessivamente complexa
-- plugins desnecessários
-- dependências pesadas
-
-## Workflow
-
-1. Toda tarefa (solicitação de desenvolvimento) deve ser feita numa branch 
-   especifica para tal. Crie uma branch nova a partir da `main` e atue dentro 
-   dela.
-2. Antes de desenvolver, SEMPRE crie um plano passo-a-passo de implementação da 
-   tarefa. Esse plano deve ter cobertura de testes automatizados quando cabível.
-3. Apresente o plano ao usuário e aguarde aprovação. O plano DEVE ser revisado 
-   e aprovado explicitamente pelo usuário. 
-4. SOMENTE após aprovação, salve o plano em 
-   "docs/plans/plan-[mumero-sequencial]-[branch-name].md".
-5. Inicie o desenvolvimento:
-  - Crie os testes automatizados.
-  - Execute o desenvolvimento do plano.
-  - Revise se todos os requisitos foram atendidos. Volte e ajuste se necessário, 
-    somente após atender todos os requisitos e passar nos testes automatizados 
-    a revisão estará concluída.
-  - Commite as alterações.
-5. Informe a conclusão do desenvolvimento ao usuário e aguarde o retorno dele.
-6. Se o usuário solicitar ajustes ou correções. Continue na mesma branch, 
-   atualize o plano e submeta as alterações ao usuário para aprovação. Aprovado,
-   atualize o arquivo do plano em "docs/plans/" e execute-o. Volte ao passo 5.
-7. Aprovado o desenvolvimento pelo usuário, confirme com o usuário se a tarefa
-   está concluída caso ele não o tenha feito. Confirmado a conclusão, abra um 
-   pool request para a branch `main`.
-8. Volte para branch principal (main).
-
-## Regras
-
-- Sempre solicite aprovação para deletar arquivos ou pastas, exceto quando o
-  usuário solicitar explicitamente no chat.
-
-- ------------------------------------------------------------------------------
-
 # 00 - Desenvolvimento
 
 Status: Draft  
@@ -150,7 +93,7 @@ Ele deve consultar:
 
 * documentação arquitetural relevante;
 * contratos envolvidos;
-* base de conhecimento (`docs/knowledge/`);
+* base de conhecimento (`docs/dev/knowledge/`);
 * código existente relacionado à tarefa.
 
 O objetivo é compreender o estado atual do sistema antes de elaborar qualquer 
@@ -209,7 +152,7 @@ usuário.
 Após aprovação, o plano deve ser salvo em:
 
 ```
-docs/plans/
+docs/dev/plans/
 ```
 
 Nome do arquivo:
@@ -286,7 +229,7 @@ Dependendo da natureza do aprendizado, um ou mais documentos deverão ser
 criados, ou atualizados nas seguintes pastas:
 
 ```
-docs/knowledge/
+docs/dev/knowledge/
 ```
 
 #### Lessons
@@ -303,7 +246,7 @@ Registrar um resumo da implementação contendo:
 Local:
 
 ```
-docs/knowledge/lessons/
+docs/dev/knowledge/lessons/
 ```
 
 ---
@@ -322,7 +265,7 @@ Exemplos:
 Local:
 
 ```
-docs/knowledge/patterns/
+docs/dev/knowledge/patterns/
 ```
 
 ---
@@ -342,7 +285,7 @@ Cada documento deve explicar:
 Local:
 
 ```
-docs/knowledge/anti-patterns/
+docs/dev/knowledge/anti-patterns/
 ```
 
 ---
@@ -365,7 +308,7 @@ Cada Recipe deve conter:
 Local:
 
 ```
-docs/knowledge/recipes/
+docs/dev/knowledge/recipes/
 ```
 
 Após concluir a captura de conhecimento, retornar para a branch principal (`main`).
@@ -443,17 +386,18 @@ Este documento deverá evoluir para contemplar:
 ## Arquitetura
 
 - `architecture/01-system.md`
-- `architecture/02-runtime.md`
+- `architecture/02-core.md`
 - `architecture/03-backend.md`
 - `architecture/04-frontend.md`
 - `architecture/05-api.md`
-- `architecture/06-openclaude.md`
 - `architecture/07-database.md`
 - `architecture/08-redis.md`
+- `architecture/09-projects.md`
+- `architecture/integrations/openclaude.md`
 
 ## Base de Conhecimento
 
-- `docs/knowledge/`
+- `docs/dev/knowledge/`
 
 ---
 

@@ -13,7 +13,7 @@ Responsável: Arquitetura
 
 # 1. Objetivo
 
-A pasta `docs/knowledge` reúne o conhecimento adquirido durante o 
+A pasta `docs/dev/dev/knowledge` reúne o conhecimento adquirido durante o 
 desenvolvimento da Ana.
 
 Seu objetivo é transformar a experiência obtida em cada implementação em 
@@ -27,7 +27,7 @@ Esta documentação complementa a documentação arquitetural do projeto.
 # 2. Estrutura
 
 ```text
-docs/
+docs/dev/
 └── knowledge/
     ├── lessons/
     ├── patterns/

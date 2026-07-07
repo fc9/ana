@@ -1,12 +1,12 @@
 # Ana
 
-Ana é uma interface web local para chats, workspaces e manipulação assistida de arquivos.
+Ana é uma interface web local para chats, projetos e manipulação assistida de arquivos.
 
 ## Stack inicial
 
 - Frontend: Next.js + TypeScript + Tailwind CSS
 - Backend: Python FastAPI
-- Runtime de código/arquivos: Node/TypeScript baseado no OpenClaude
+- Integração de código: OpenClaude
 - Banco: PostgreSQL
 - Fila/cache: Redis
 - Ambiente: Docker Compose
@@ -14,8 +14,12 @@ Ana é uma interface web local para chats, workspaces e manipulação assistida 
 ## Objetivo do MVP
 
 - Criar, arquivar e excluir chats
-- Criar workspaces vinculados a pastas locais
-- Vincular chats a workspaces
+- Criar projetos vinculados a pastas locais
+- Vincular chats a projetos
 - Enviar texto, arquivos e conteúdo do clipboard
 - Configurar provider LLM
-- Preparar integração com OpenClaude Runtime
+- Preparar integração com OpenClaude
+
+## Documentação
+
+Ver `docs/README.md`.
