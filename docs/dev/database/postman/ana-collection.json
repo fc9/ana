@@ -1,0 +1,2528 @@
+{
+	"info": {
+		"_postman_id": "b1e2a3c4-0001-4a2b-9c3d-ana00000001",
+		"name": "Ana API",
+		"description": "Collection derivada de docs/dev/contracts/api-payloads.md e docs/dev/architecture/05-api.md. Reflete o estado do MVP em 2026-07-10.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:8000"
+		},
+		{
+			"key": "user_id",
+			"value": "11111111-1111-1111-1111-111111111111"
+		},
+		{
+			"key": "project_id",
+			"value": "22222222-2222-2222-2222-222222222222"
+		},
+		{
+			"key": "config_id",
+			"value": "33333333-3333-3333-3333-333333333333"
+		},
+		{
+			"key": "currency_id_usd",
+			"value": "44444444-4444-4444-4444-444444444444"
+		},
+		{
+			"key": "currency_id_brl",
+			"value": "cccccccc-cccc-cccc-cccc-cccccccccccc"
+		},
+		{
+			"key": "language_id_en",
+			"value": "55555555-5555-5555-5555-555555555555"
+		},
+		{
+			"key": "provider_id",
+			"value": "66666666-6666-6666-6666-666666666666"
+		},
+		{
+			"key": "provider_model_id",
+			"value": "77777777-7777-7777-7777-777777777777"
+		},
+		{
+			"key": "provider_credential_id",
+			"value": "dddddddd-1111-2222-3333-444444444444"
+		},
+		{
+			"key": "provider_subscription_id",
+			"value": "eeeeeeee-1111-2222-3333-444444444444"
+		},
+		{
+			"key": "chat_id",
+			"value": "88888888-8888-8888-8888-888888888888"
+		},
+		{
+			"key": "message_id_user",
+			"value": "99999999-9999-9999-9999-999999999999"
+		},
+		{
+			"key": "message_id_assistant",
+			"value": "aaaaaaaa-aaaa-aaaa-aaaa-aaaaaaaaaaaa"
+		},
+		{
+			"key": "attachment_id",
+			"value": "bbbbbbbb-bbbb-bbbb-bbbb-bbbbbbbbbbbb"
+		},
+		{
+			"key": "staged_file_id",
+			"value": "a3f1e9c0-1b2d-4e6a-9f3a-7c8d5e2b1a90"
+		}
+	],
+	"item": [
+		{
+			"name": "Health",
+			"item": [
+				{
+					"name": "GET /health",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/health",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"health"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/health",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"health"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"status\": \"ok\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET /version",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/version",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"version"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/version",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"version"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"version\": \"0.1.0\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Limits",
+			"item": [
+				{
+					"name": "GET /limits",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/limits",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"limits"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/limits",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"limits"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"min_text_length\": 2,\n  \"max_attachments_per_message\": 10\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Me",
+			"item": [
+				{
+					"name": "GET /me",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"me"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/me",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"id\": \"{{user_id}}\",\n  \"name\": \"Fabio\",\n  \"language_id\": \"{{language_id_en}}\",\n  \"created_at\": \"2026-07-01T10:00:00Z\",\n  \"updated_at\": \"2026-07-01T10:00:00Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PATCH /me",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/me",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"me"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Fabio\",\n  \"language_id\": \"{{language_id_en}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "PATCH",
+								"url": {
+									"raw": "{{base_url}}/me",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"me"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"id\": \"{{user_id}}\",\n  \"name\": \"Fabio\",\n  \"language_id\": \"{{language_id_en}}\",\n  \"created_at\": \"2026-07-01T10:00:00Z\",\n  \"updated_at\": \"2026-07-01T10:00:00Z\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Currencies",
+			"item": [
+				{
+					"name": "GET /currencies",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/currencies",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"currencies"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/currencies",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"currencies"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "[\n  {\n    \"id\": \"{{currency_id_usd}}\",\n    \"code\": \"USD\",\n    \"name\": \"US Dollar\",\n    \"symbol\": \"$\",\n    \"rate_to_usd\": 1.0,\n    \"is_active\": true,\n    \"created_at\": \"2026-01-01T00:00:00Z\",\n    \"updated_at\": \"2026-01-01T00:00:00Z\"\n  },\n  {\n    \"id\": \"{{currency_id_brl}}\",\n    \"code\": \"BRL\",\n    \"name\": \"Brazilian Real\",\n    \"symbol\": \"R$\",\n    \"rate_to_usd\": 5.42,\n    \"is_active\": true,\n    \"created_at\": \"2026-01-01T00:00:00Z\",\n    \"updated_at\": \"2026-01-01T00:00:00Z\"\n  }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Languages",
+			"item": [
+				{
+					"name": "GET /languages",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/languages",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"languages"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/languages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"languages"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "[\n  {\n    \"id\": \"{{language_id_en}}\",\n    \"code\": \"en\",\n    \"name\": \"English\",\n    \"endonym\": \"English\",\n    \"is_active\": true,\n    \"created_at\": \"2026-01-01T00:00:00Z\",\n    \"updated_at\": \"2026-01-01T00:00:00Z\"\n  },\n  {\n    \"id\": \"dddddddd-dddd-dddd-dddd-dddddddddddd\",\n    \"code\": \"pt-BR\",\n    \"name\": \"Portuguese (Brazil)\",\n    \"endonym\": \"Português (Brasil)\",\n    \"is_active\": true,\n    \"created_at\": \"2026-01-01T00:00:00Z\",\n    \"updated_at\": \"2026-01-01T00:00:00Z\"\n  }\n]"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Providers",
+			"item": [
+				{
+					"name": "GET /providers?project_id={{project_id}}",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/providers?project_id={{project_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"providers"
+							],
+							"query": [
+								{
+									"key": "project_id",
+									"value": "{{project_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/providers?project_id={{project_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"providers"
+									],
+									"query": [
+										{
+											"key": "project_id",
+											"value": "{{project_id}}"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "[\n  {\n    \"id\": \"{{provider_id}}\",\n    \"driver\": \"openai\",\n    \"canonical_instance_id\": \"official\",\n    \"display_name\": \"OpenAI\",\n    \"base_url\": null,\n    \"created_at\": \"2026-07-01T10:00:00Z\",\n    \"updated_at\": \"2026-07-01T10:00:00Z\",\n    \"is_external\": true\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "POST /providers",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/providers",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"providers"
+							]
+						},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"project_id\": \"{{project_id}}\",\n  \"driver\": \"openai\",\n  \"base_url\": null,\n  \"secret\": \"sk-...\",\n  \"is_private\": false,\n  \"is_external\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Registra e/ou assina um provider. Se o provider/credencial ja existirem, nao cria nem altera nada - so assina, e a resposta informa como a credencial ja estava registrada. No maximo uma credencial publica por provider (pedir publica com outra ja existente registra a nova como privada e avisa o motivo)."
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/providers",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"providers"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"provider\": {\n    \"id\": \"{{provider_id}}\",\n    \"driver\": \"openai\",\n    \"canonical_instance_id\": \"official\",\n    \"display_name\": \"OpenAI\",\n    \"base_url\": null,\n    \"created_at\": \"2026-07-01T10:00:00Z\",\n    \"updated_at\": \"2026-07-01T10:00:00Z\",\n    \"is_external\": true\n  },\n  \"credential\": {\n    \"id\": \"{{provider_credential_id}}\",\n    \"is_private\": false,\n    \"already_existed\": false,\n    \"secret_hint\": \"sk-proj-••••••••••••aB31\"\n  },\n  \"subscription_id\": \"{{provider_subscription_id}}\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET /providers/:id",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/providers/{{provider_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"providers",
+								"{{provider_id}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Provider Credentials",
+			"item": [
+				{
+					"name": "PATCH /provider-credentials/:id",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{base_url}}/provider-credentials/{{provider_credential_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"provider-credentials",
+								"{{provider_credential_id}}"
+							]
+						},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"project_id\": \"{{project_id}}\",\n  \"secret\": \"sk-novo-valor\",\n  \"is_private\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Exige que project_id ja tenha assinatura para essa credencial. Trocar o secret para uma conta diferente migra a assinatura do editor para outra credencial (existente ou recem-criada), sem afetar outros assinantes."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "PATCH",
+								"url": {
+									"raw": "{{base_url}}/provider-credentials/{{provider_credential_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"provider-credentials",
+										"{{provider_credential_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"id\": \"{{provider_credential_id}}\",\n  \"provider_id\": \"{{provider_id}}\",\n  \"account_or_tenant\": \"org-abc123\",\n  \"secret_hint\": \"sk-••••••••••••novo\",\n  \"is_private\": true,\n  \"created_at\": \"2026-07-01T10:00:00Z\",\n  \"updated_at\": \"2026-07-09T09:00:00Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE /projects/:project_id/providers/:provider_id",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}/providers/{{provider_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"providers",
+								"{{provider_id}}"
+							]
+						},
+						"description": "Desassinar (o excluir da UI) - remove so a assinatura de project_id, nunca uma exclusao fisica direta. So responde 204 depois que o cache de disponibilidade terminou de recomputar e o broadcast (provider_stack) foi enviado - sustenta o spinner do modal de confirmacao na UI. Se a credencial usada ficar sem nenhum assinante, e removida fisicamente - e o provider junto, se tambem ficar sem nenhuma credencial."
+					},
+					"response": [
+						{
+							"name": "204 No Content",
+							"originalRequest": {
+								"method": "DELETE",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/providers/{{provider_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"providers",
+										"{{provider_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Provider Models",
+			"item": [
+				{
+					"name": "GET /providers/:id/models",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/providers/{{provider_id}}/models",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"providers",
+								"{{provider_id}}",
+								"models"
+							]
+						},
+						"description": "Modelos tambem nascem sozinhos, sem POST algum - ProviderCacheService.rebuild_cache descobre o catalogo ao vivo do provider e cria os que ainda nao existem. Preco nao e campo desta tabela - vive em ModelPrice (driver+provider_ref), sem linha cadastrada o preco e zero ate alguem cadastrar de verdade (ver docs/dev/contracts/model-price.md)."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/providers/{{provider_id}}/models",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"providers",
+										"{{provider_id}}",
+										"models"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "[\n  {\n    \"id\": \"{{provider_model_id}}\",\n    \"provider_id\": \"{{provider_id}}\",\n    \"provider_ref\": \"gpt-5-2026-01-15\",\n    \"name\": \"GPT-5\",\n    \"is_active\": true,\n    \"created_at\": \"2026-07-01T10:00:00Z\",\n    \"updated_at\": \"2026-07-01T10:00:00Z\"\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "POST /providers/:id/models",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/providers/{{provider_id}}/models",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"providers",
+								"{{provider_id}}",
+								"models"
+							]
+						},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"project_id\": \"{{project_id}}\",\n  \"provider_ref\": \"gpt-5-2026-01-15\",\n  \"name\": \"GPT-5\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Cadastro manual so de catalogo (provider_ref/name) - preco nao faz parte deste payload, vive em ModelPrice (ver docs/dev/contracts/model-price.md). Exige project_id com assinatura no provider."
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/providers/{{provider_id}}/models",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"providers",
+										"{{provider_id}}",
+										"models"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"id\": \"{{provider_model_id}}\",\n  \"provider_id\": \"{{provider_id}}\",\n  \"provider_ref\": \"gpt-5-2026-01-15\",\n  \"name\": \"GPT-5\",\n  \"is_active\": true,\n  \"created_at\": \"2026-07-01T10:00:00Z\",\n  \"updated_at\": \"2026-07-01T10:00:00Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PATCH /providers/:id/models/:model_id",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{base_url}}/providers/{{provider_id}}/models/{{provider_model_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"providers",
+								"{{provider_id}}",
+								"models",
+								"{{provider_model_id}}"
+							]
+						},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"project_id\": \"{{project_id}}\",\n  \"name\": \"GPT-5 (2026-01)\",\n  \"is_active\": true\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /providers/:id/models/:model_id",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/providers/{{provider_id}}/models/{{provider_model_id}}?project_id={{project_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"providers",
+								"{{provider_id}}",
+								"models",
+								"{{provider_model_id}}"
+							],
+							"query": [
+								{
+									"key": "project_id",
+									"value": "{{project_id}}"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "204 No Content",
+							"originalRequest": {
+								"method": "DELETE",
+								"url": {
+									"raw": "{{base_url}}/providers/{{provider_id}}/models/{{provider_model_id}}?project_id={{project_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"providers",
+										"{{provider_id}}",
+										"models",
+										"{{provider_model_id}}"
+									],
+									"query": [
+										{
+											"key": "project_id",
+											"value": "{{project_id}}"
+										}
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Projects",
+			"item": [
+				{
+					"name": "GET /projects",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/projects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/projects",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "[\n  {\n    \"id\": \"{{project_id}}\",\n    \"user_id\": \"{{user_id}}\",\n    \"name\": \"Football Manga\",\n    \"path\": \"D:\\\\repos\\\\football-manga\",\n    \"processing_chat_id\": null,\n    \"status\": \"active\",\n    \"last_accessed_at\": \"2026-07-09T08:00:00Z\",\n    \"created_at\": \"2026-07-01T10:00:00Z\",\n    \"updated_at\": \"2026-07-01T10:00:00Z\"\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "POST /projects",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/projects",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Football Manga\",\n  \"path\": \"D:\\\\repos\\\\football-manga\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/projects",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"id\": \"{{project_id}}\",\n  \"user_id\": \"{{user_id}}\",\n  \"name\": \"Football Manga\",\n  \"path\": \"D:\\\\repos\\\\football-manga\",\n  \"processing_chat_id\": null,\n  \"status\": \"active\",\n  \"last_accessed_at\": null,\n  \"created_at\": \"2026-07-01T10:00:00Z\",\n  \"updated_at\": \"2026-07-01T10:00:00Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET /projects/:id",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /projects/:id",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"Football Manga 2\",\n  \"path\": \"D:\\\\repos\\\\football-manga-2\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /projects/:id",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "204 No Content",
+							"originalRequest": {
+								"method": "DELETE",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"body": ""
+						},
+						{
+							"name": "422 Unprocessable — projeto Base",
+							"originalRequest": {
+								"method": "DELETE",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"detail\": \"O projeto Base não pode ser removido.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Git",
+			"item": [
+				{
+					"name": "GET /projects/:id/git",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}/git",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"git"
+							]
+						},
+						"description": "Mockado no MVP — não executa git de fato."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/git",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"git"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"branch\": \"main\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Config",
+			"item": [
+				{
+					"name": "GET /projects/:id/config",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}/config",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"config"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/config",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"config"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"id\": \"{{config_id}}\",\n  \"project_id\": \"{{project_id}}\",\n  \"currency_id\": \"{{currency_id_usd}}\",\n  \"active_provider_id\": \"{{provider_id}}\",\n  \"active_model_ref\": \"gpt-5-2026-01-15\",\n  \"fixed_contexts\": [\n    \"chats\",\n    \"files\",\n    \"git\"\n  ],\n  \"hidden_contexts\": [],\n  \"hidden_tools\": [\n    \"shell\"\n  ],\n  \"created_at\": \"2026-07-01T10:00:00Z\",\n  \"updated_at\": \"2026-07-01T10:00:00Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PATCH /projects/:id/config",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}/config",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"config"
+							]
+						},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"currency_id\": \"{{currency_id_brl}}\",\n  \"provider_id\": \"{{provider_id}}\",\n  \"model_ref\": \"claude-sonnet-5-2026-01-15\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"description": "Troca de provider_id/model_ref e sempre aceita - sem teste de conexao sincrono, mesmo que o par nao resolva a nada visivel no momento (ex: provider que o projeto nunca assinou nem enxerga como publico). O Backend grava, reordena a pilha internamente e aciona a recomputacao do cache em segundo plano, sem bloquear esta resposta."
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "PATCH",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/config",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"config"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"id\": \"{{config_id}}\",\n  \"project_id\": \"{{project_id}}\",\n  \"currency_id\": \"{{currency_id_brl}}\",\n  \"active_provider_id\": \"{{provider_id}}\",\n  \"active_model_ref\": \"claude-sonnet-5-2026-01-15\",\n  \"fixed_contexts\": [\n    \"chats\",\n    \"files\",\n    \"git\"\n  ],\n  \"hidden_contexts\": [],\n  \"hidden_tools\": [\n    \"shell\"\n  ],\n  \"created_at\": \"2026-07-01T10:00:00Z\",\n  \"updated_at\": \"2026-07-09T09:10:00Z\"\n}"
+						}
+					]
+				},
+				{
+					"name": "PATCH /projects/:id/config (hidden_contexts/hidden_tools, debounce 3s)",
+					"request": {
+						"method": "PATCH",
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}/config",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"config"
+							]
+						},
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"hidden_contexts\": [\n    \"git\"\n  ],\n  \"hidden_tools\": [\n    \"shell\",\n    \"browser\"\n  ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Provider Stack",
+			"item": [
+				{
+					"name": "GET /projects/:id/provider-stack",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}/provider-stack",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"provider-stack"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/provider-stack",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"provider-stack"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"active_model\": {\n    \"provider_id\": \"{{provider_id}}\",\n    \"model_ref\": \"gpt-5-2026-01-15\",\n    \"provider_model_id\": \"{{provider_model_id}}\",\n    \"status\": \"normal\"\n  },\n  \"provider_order_updated_at\": \"2026-07-09T08:00:00Z\",\n  \"providers\": [\n    {\n      \"id\": \"{{provider_id}}\",\n      \"display_name\": \"OpenAI\",\n      \"available\": true,\n      \"models\": [\n        {\n          \"id\": \"{{provider_model_id}}\",\n          \"provider_ref\": \"gpt-5-2026-01-15\",\n          \"name\": \"GPT-5\"\n        }\n      ]\n    }\n  ]\n}"
+						},
+						{
+							"name": "200 OK - modelo ativo removido",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/provider-stack",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"provider-stack"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"active_model\": {\n    \"provider_id\": \"{{provider_id}}\",\n    \"model_ref\": \"claude-opus-legacy\",\n    \"provider_model_id\": null,\n    \"status\": \"removed\"\n  },\n  \"provider_order_updated_at\": \"2026-07-09T08:00:00Z\",\n  \"providers\": [\n    {\n      \"id\": \"{{provider_id}}\",\n      \"display_name\": \"OpenAI\",\n      \"available\": true,\n      \"models\": [\n        {\n          \"id\": \"{{provider_model_id}}\",\n          \"provider_ref\": \"gpt-5-2026-01-15\",\n          \"name\": \"GPT-5\"\n        }\n      ]\n    }\n  ]\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Chats",
+			"item": [
+				{
+					"name": "GET /projects/:id/chats?status=",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}/chats",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"chats"
+							],
+							"query": [
+								{
+									"key": "status",
+									"value": "active",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/chats",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"chats"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "[\n  {\n    \"id\": \"{{chat_id}}\",\n    \"project_id\": \"{{project_id}}\",\n    \"title\": \"Como estruturar o midfield 4-3-3\",\n    \"status\": \"active\",\n    \"pinned_at\": \"2026-07-08T09:00:00Z\",\n    \"created_at\": \"2026-07-05T14:00:00Z\",\n    \"updated_at\": \"2026-07-08T09:00:00Z\"\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "GET /projects/:id/chats/search?q={query}",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}/chats/search?q=contra-ataque",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"chats",
+								"search"
+							],
+							"query": [
+								{
+									"key": "q",
+									"value": "contra-ataque"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/chats/search?q=contra-ataque",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"chats",
+										"search"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "[\n  {\n    \"id\": \"{{chat_id}}\",\n    \"project_id\": \"{{project_id}}\",\n    \"title\": \"Como estruturar o midfield 4-3-3\",\n    \"status\": \"active\",\n    \"pinned_at\": \"2026-07-08T09:00:00Z\",\n    \"created_at\": \"2026-07-05T14:00:00Z\",\n    \"updated_at\": \"2026-07-08T09:00:00Z\"\n  }\n]"
+						},
+						{
+							"name": "400 Bad Request — busca curta",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/chats/search?q=ab",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"chats",
+										"search"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"detail\": \"A busca precisa ter no mínimo 3 caracteres.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "POST /projects/:id/chats (cria chat + primeira mensagem)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}/chats",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"chats"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content\": \"Qual a melhor formação para um time rápido no contra-ataque?\",\n  \"staged_files\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/chats",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"chats"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"id\": \"{{message_id_assistant}}\",\n  \"chat_id\": \"{{chat_id}}\",\n  \"role\": \"assistant\",\n  \"content\": \"Um 4-3-3 com pontas velozes tende a explorar bem o contra-ataque...\",\n  \"avatar_expression\": {\"id\": \"estudei_para_responder\", \"image_url\": \"https://cdn.example.com/avatar/estudei_para_responder.gif\", \"caption\": \"Estudei bastante para essa resposta\"},\n  \"is_first\": false,\n  \"attachments\": [],\n  \"created_at\": \"2026-07-09T08:00:05Z\",\n  \"chat\": {\n    \"id\": \"{{chat_id}}\",\n    \"title\": \"Como estruturar o midfield 4-3-3\"\n  }\n}"
+						},
+						{
+							"name": "400 Bad Request — sem texto (nenhum chat criado)",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/chats",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"chats"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"detail\": \"A primeira mensagem do chat precisa ter texto.\"\n}"
+						},
+						{
+							"name": "409 Conflict — projeto processando",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/chats",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"chats"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"detail\": \"Este projeto já está processando outra mensagem.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "GET /chats/:id",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/chats/{{chat_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chats",
+								"{{chat_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /chats/:id (renomear)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chats/{{chat_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chats",
+								"{{chat_id}}"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"title\": \"Novo título\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /chats/:id (arquivar)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chats/{{chat_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chats",
+								"{{chat_id}}"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"status\": \"archived\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /chats/:id (favoritar)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chats/{{chat_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chats",
+								"{{chat_id}}"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"pinned_at\": \"2026-07-09T08:30:00Z\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "PATCH /chats/:id (desfavoritar)",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chats/{{chat_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chats",
+								"{{chat_id}}"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"pinned_at\": null\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "DELETE /chats/:id",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/chats/{{chat_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chats",
+								"{{chat_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "204 No Content",
+							"originalRequest": {
+								"method": "DELETE",
+								"url": {
+									"raw": "{{base_url}}/chats/{{chat_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chats",
+										"{{chat_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Messages",
+			"item": [
+				{
+					"name": "GET /chats/:id/messages",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/chats/{{chat_id}}/messages",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chats",
+								"{{chat_id}}",
+								"messages"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/chats/{{chat_id}}/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chats",
+										"{{chat_id}}",
+										"messages"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "[\n  {\n    \"id\": \"{{message_id_user}}\",\n    \"chat_id\": \"{{chat_id}}\",\n    \"role\": \"user\",\n    \"content\": \"Qual a melhor formação para um time rápido no contra-ataque?\",\n    \"avatar_expression\": null,\n    \"is_first\": true,\n    \"attachments\": [],\n    \"created_at\": \"2026-07-09T08:00:00Z\"\n  },\n  {\n    \"id\": \"{{message_id_assistant}}\",\n    \"chat_id\": \"{{chat_id}}\",\n    \"role\": \"assistant\",\n    \"content\": \"Um 4-3-3 com pontas velozes tende a explorar bem o contra-ataque...\",\n    \"avatar_expression\": {\"id\": \"estudei_para_responder\", \"image_url\": \"https://cdn.example.com/avatar/estudei_para_responder.gif\", \"caption\": \"Estudei bastante para essa resposta\"},\n    \"is_first\": false,\n    \"attachments\": [],\n    \"created_at\": \"2026-07-09T08:00:05Z\"\n  }\n]"
+						}
+					]
+				},
+				{
+					"name": "POST /chats/:id/messages (sem anexo)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chats/{{chat_id}}/messages",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chats",
+								"{{chat_id}}",
+								"messages"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content\": \"Qual a melhor formação para um time rápido no contra-ataque?\",\n  \"staged_files\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": [
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/chats/{{chat_id}}/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chats",
+										"{{chat_id}}",
+										"messages"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"id\": \"{{message_id_assistant}}\",\n  \"chat_id\": \"{{chat_id}}\",\n  \"role\": \"assistant\",\n  \"content\": \"Um 4-3-3 com pontas velozes tende a explorar bem o contra-ataque...\",\n  \"avatar_expression\": {\"id\": \"estudei_para_responder\", \"image_url\": \"https://cdn.example.com/avatar/estudei_para_responder.gif\", \"caption\": \"Estudei bastante para essa resposta\"},\n  \"is_first\": false,\n  \"attachments\": [],\n  \"created_at\": \"2026-07-09T08:00:05Z\"\n}"
+						},
+						{
+							"name": "201 Created — falha no LLM (evento de erro persistido)",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/chats/{{chat_id}}/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chats",
+										"{{chat_id}}",
+										"messages"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"id\": \"ffffffff-ffff-ffff-ffff-ffffffffffff\",\n  \"chat_id\": \"{{chat_id}}\",\n  \"role\": \"event\",\n  \"content\": \"Hum, algo deu errado: connection timeout after 30s.\",\n  \"avatar_expression\": null,\n  \"is_first\": false,\n  \"attachments\": [],\n  \"created_at\": \"2026-07-09T08:00:05Z\"\n}"
+						},
+						{
+							"name": "422 Unprocessable — modelo ativo removido",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/chats/{{chat_id}}/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chats",
+										"{{chat_id}}",
+										"messages"
+									]
+								}
+							},
+							"status": "Unprocessable Entity",
+							"code": 422,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"detail\": \"Provider do modelo foi removido. Escolha outro modelo.\"\n}"
+						},
+						{
+							"name": "503 Service Unavailable — modelo ativo indisponível",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/chats/{{chat_id}}/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chats",
+										"{{chat_id}}",
+										"messages"
+									]
+								}
+							},
+							"status": "Service Unavailable",
+							"code": 503,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"detail\": \"Provider indisponível no momento. Tente novamente em instantes.\"\n}"
+						},
+						{
+							"name": "409 Conflict — projeto processando",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/chats/{{chat_id}}/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chats",
+										"{{chat_id}}",
+										"messages"
+									]
+								}
+							},
+							"status": "Conflict",
+							"code": 409,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"detail\": \"Este projeto já está processando outra mensagem.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "POST /chats/:id/messages (com anexo)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chats/{{chat_id}}/messages",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chats",
+								"{{chat_id}}",
+								"messages"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content\": \"Segue o print da formação atual\",\n  \"staged_files\": [\"{{staged_file_id}}\"]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": [
+						{
+							"name": "400 Bad Request — limite de anexos excedido",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/chats/{{chat_id}}/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chats",
+										"{{chat_id}}",
+										"messages"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"detail\": \"Limite de 10 anexos por envio excedido.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "POST /chats/:id/messages (vazia — rejeitada)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chats/{{chat_id}}/messages",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chats",
+								"{{chat_id}}",
+								"messages"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content\": \"\",\n  \"staged_files\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": [
+						{
+							"name": "400 Bad Request — sem texto e sem anexo",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/chats/{{chat_id}}/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chats",
+										"{{chat_id}}",
+										"messages"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"detail\": \"A mensagem precisa ter texto ou anexo.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "POST /chats/:id/messages (texto abaixo do mínimo)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/chats/{{chat_id}}/messages",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"chats",
+								"{{chat_id}}",
+								"messages"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"content\": \"K\",\n  \"staged_files\": []\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": [
+						{
+							"name": "400 Bad Request — abaixo de MIN_TEXT_LENGTH",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/chats/{{chat_id}}/messages",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"chats",
+										"{{chat_id}}",
+										"messages"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"detail\": \"O texto precisa ter no mínimo 2 caracteres.\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Realtime",
+			"description": "WS /projects/{id}/realtime — canal WebSocket, não requisição HTTP. Documentado aqui só como referência (ver docs/dev/architecture/05-api.md > WebSocket); Postman não executa este item.",
+			"item": [
+				{
+					"name": "WS /projects/:id/realtime (referência — não executável)",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}/realtime",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"realtime"
+							]
+						},
+						"description": "Mensagens do servidor, identificadas por `type`: `processing`, `new_message` e `provider_stack` (concretos no MVP) e `system_status` (formato ainda não desenhado, evolução futura). Exemplos:\n\n{\"type\": \"processing\", \"chat_id\": \"{{chat_id}}\"}\n\n{\"type\": \"processing\", \"chat_id\": null}\n\n{\"type\": \"new_message\", \"chat_id\": \"{{chat_id}}\"}\n\n{\"type\": \"provider_stack\", \"provider_order_updated_at\": \"2026-07-09T08:10:00Z\"}"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Attachments",
+			"item": [
+				{
+					"name": "POST /projects/:id/attachments",
+					"request": {
+						"method": "POST",
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}/attachments",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"attachments"
+							]
+						},
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "file",
+									"type": "file",
+									"src": ""
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK — staged",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/attachments",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"attachments"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"staged_file_id\": \"{{staged_file_id}}\",\n  \"type\": \"image\",\n  \"filename\": \"formacao.png\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE /projects/:id/attachments/staged/:staged_file_id",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}/attachments/staged/{{staged_file_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"attachments",
+								"staged",
+								"{{staged_file_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "204 No Content",
+							"originalRequest": {
+								"method": "DELETE",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/attachments/staged/{{staged_file_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"attachments",
+										"staged",
+										"{{staged_file_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"body": ""
+						}
+					]
+				},
+				{
+					"name": "GET /attachments/:id",
+					"request": {
+						"method": "GET",
+						"url": {
+							"raw": "{{base_url}}/attachments/{{attachment_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attachments",
+								"{{attachment_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/attachments/{{attachment_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"attachments",
+										"{{attachment_id}}"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"id\": \"{{attachment_id}}\",\n  \"message_id\": \"{{message_id_user}}\",\n  \"type\": \"image\",\n  \"storage_path\": \".ana/storage/formacao.png\",\n  \"created_at\": \"2026-07-09T08:00:00Z\"\n}"
+						},
+						{
+							"name": "404 Not Found",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/attachments/{{attachment_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"attachments",
+										"{{attachment_id}}"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"detail\": \"Attachment não encontrado.\"\n}"
+						}
+					]
+				},
+				{
+					"name": "DELETE /attachments/:id",
+					"request": {
+						"method": "DELETE",
+						"url": {
+							"raw": "{{base_url}}/attachments/{{attachment_id}}",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"attachments",
+								"{{attachment_id}}"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "204 No Content",
+							"originalRequest": {
+								"method": "DELETE",
+								"url": {
+									"raw": "{{base_url}}/attachments/{{attachment_id}}",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"attachments",
+										"{{attachment_id}}"
+									]
+								}
+							},
+							"status": "No Content",
+							"code": 204,
+							"_postman_previewlanguage": "json",
+							"header": [],
+							"body": ""
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Tools",
+			"item": [
+				{
+					"name": "POST /projects/:id/tools/gastos",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base_url}}/projects/{{project_id}}/tools/gastos",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"projects",
+								"{{project_id}}",
+								"tools",
+								"gastos"
+							]
+						},
+						"body": {
+							"mode": "raw",
+							"raw": "{}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						}
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/tools/gastos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"tools",
+										"gastos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"currency\": {\n    \"id\": \"{{currency_id_usd}}\",\n    \"code\": \"USD\",\n    \"symbol\": \"$\"\n  },\n  \"tokens\": {\n    \"input\": 12400,\n    \"output\": 3200,\n    \"total\": 15600\n  },\n  \"cost\": {\n    \"input\": -0.0155,\n    \"cache\": -0.0004,\n    \"output\": -0.032,\n    \"total\": -0.0479\n  },\n  \"timeline\": [\n    {\n      \"provider_model_id\": \"{{provider_model_id}}\",\n      \"name\": \"gpt-5\",\n      \"percent\": 100.0,\n      \"cost_usd\": -0.0479,\n      \"current_price\": {\n        \"input_price_per_1k\": 1.25,\n        \"cache_read_price_per_1k\": 0.125,\n        \"cache_write_price_per_1k\": 1.5,\n        \"output_price_per_1k\": 10.0\n      }\n    }\n  ]\n}"
+						},
+						{
+							"name": "200 OK - sem uso registrado",
+							"originalRequest": {
+								"method": "POST",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/tools/gastos",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"tools",
+										"gastos"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"currency\": { \"id\": \"{{currency_id_usd}}\", \"code\": \"USD\", \"symbol\": \"$\" },\n  \"tokens\": { \"input\": 0, \"output\": 0, \"total\": 0 },\n  \"cost\": { \"input\": 0, \"cache\": 0, \"output\": 0, \"total\": 0 },\n  \"timeline\": []\n}"
+						}
+					]
+				}
+			]
+		}
+	]
+}

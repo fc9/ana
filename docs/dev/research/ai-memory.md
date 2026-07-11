@@ -27,6 +27,10 @@ Ana.
 O foco deste estudo não é reutilizar código, mas compreender o modelo de memória
 utilizado pelo projeto e identificar oportunidades de integração.
 
+O desenho concreto que resultou deste estudo (tipos de memória, formato de uma
+nota, índice, gatilhos de leitura/escrita) está em
+`../architecture/12-memory.md`.
+
 ---
 
 # 2. O que é o ai-memory

@@ -4,7 +4,9 @@
 > apenas para registrar o conceito antes da implementação.
 
 Representa um agrupamento de chats dentro de um projeto, usado para
-delimitar o escopo da memória compartilhada entre eles.
+delimitar o escopo da memória compartilhada entre eles (ver
+`../architecture/12-memory.md` para a mecânica de tipos, formato e
+gatilhos de leitura/escrita da memória em si).
 
 ### Responsabilidades (futuro):
 

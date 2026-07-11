@@ -315,6 +315,59 @@ Após concluir a captura de conhecimento, retornar para a branch principal (`mai
 
 ---
 
+## Padrão de Commits
+
+Toda mensagem de commit segue [Conventional Commits](https://www.conventionalcommits.org/pt-br/v1.0.0/)
+— referência completa em `../research/conventional-commits.md`, para
+consulta sem depender de acesso à internet.
+
+### Estrutura
+
+```
+<tipo>[escopo opcional]: <descrição>
+
+[corpo opcional]
+
+[rodapé(s) opcional(is)]
+```
+
+### Tipos
+
+- `feat` — novo recurso;
+- `fix` — correção de bug;
+- `build`, `chore`, `ci`, `docs`, `style`, `refactor`, `perf`, `test` —
+  demais tipos, conforme a natureza da alteração.
+
+### Escopo
+
+Substantivo entre parênteses após o tipo, indicando a área afetada (ex:
+`feat(api): ...`, `fix(chat): ...`).
+
+### Breaking Changes
+
+Indicadas de uma das formas abaixo (podem ser combinadas):
+
+- `!` logo após o tipo/escopo, antes dos dois-pontos (ex:
+  `feat(api)!: ...`);
+- rodapé `BREAKING CHANGE: <descrição>` (`BREAKING-CHANGE` é sinônimo).
+
+Se o `!` for usado, o rodapé `BREAKING CHANGE:` passa a ser opcional.
+
+### Regras
+
+- tipo e descrição são obrigatórios; escopo, corpo e rodapés são
+  opcionais;
+- a descrição breve segue direto após `tipo[escopo]:` (com espaço);
+- o corpo, se existir, vem após uma linha em branco e pode ter múltiplos
+  parágrafos;
+- rodapés, se existirem, vêm após uma linha em branco do corpo; usam
+  hífen no lugar de espaço no nome do token (ex: `Acked-by:`), exceto
+  `BREAKING CHANGE`;
+- tipo, escopo e rodapés não diferenciam maiúsculas de minúsculas,
+  exceto `BREAKING CHANGE`, que deve ser maiúsculo.
+
+---
+
 ## Tipos de Alteração
 
 ### Nível 1 — Implementação
@@ -381,23 +434,30 @@ Este documento deverá evoluir para contemplar:
 
 ## Geral
 
-- `00-context.md`
+- `../00-context.md`
 
 ## Arquitetura
 
-- `architecture/01-system.md`
-- `architecture/02-core.md`
-- `architecture/03-backend.md`
-- `architecture/04-frontend.md`
-- `architecture/05-api.md`
-- `architecture/07-database.md`
-- `architecture/08-redis.md`
-- `architecture/09-projects.md`
-- `architecture/integrations/openclaude.md`
+- `01-system.md`
+- `02-core.md`
+- `03-backend.md`
+- `04-frontend.md`
+- `05-api.md`
+- `06-models.md`
+- `06b-services.md`
+- `07-database.md`
+- `08-redis.md`
+- `09-projects.md`
+- `10-resilience.md`
+- `integrations/openclaude.md`
 
 ## Base de Conhecimento
 
-- `docs/dev/knowledge/`
+- `../knowledge/`
+
+## Pesquisa
+
+- `../research/conventional-commits.md`
 
 ---
 

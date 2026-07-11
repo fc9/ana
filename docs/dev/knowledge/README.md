@@ -148,7 +148,7 @@ Criar documentação apenas quando houver ganho real para o projeto.
 ## Geral
 
 - `../00-context.md`
-- `../00-development.md`
+- `../architecture/00-development.md`
 
 ## Arquitetura
 

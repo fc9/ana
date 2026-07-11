@@ -1,6 +1,8 @@
 # Memory
 
-> Conceito futuro. Sem aplicação prática no MVP.
+> Conceito futuro. Sem aplicação prática no MVP. Mecânica detalhada
+> (tipos, formato, índice, gatilhos de leitura/escrita) em
+> `../architecture/12-memory.md`.
 
 Representa uma unidade de conhecimento consolidado, usada para
 enriquecer o contexto enviado ao modelo.

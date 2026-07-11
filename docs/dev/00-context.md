@@ -52,14 +52,19 @@ O MVP possui apenas as seguintes funcionalidades.
 - excluir chats
 - arquivar chats
 - restaurar chats
-- criar projetos
-- trocar de projetos
-- configurável com Claude ou GPT
+- favoritar/desfavoritar chats (fixa no topo da lista)
 
 ## Projetos
 
 Um projeto representa uma pasta raiz do computador onde a Ana irá trabalhar 
 restritamente.
+
+- criar projetos
+- trocar de projetos
+- excluir projetos — não é possível excluir o projeto ativo; a exclusão
+  apenas muda o status do projeto no banco de dados e remove a pasta
+  `.ana/` da raiz do projeto (a pasta raiz do usuário e seu conteúdo não
+  são tocados)
 
 Todo chat deve pertencer a um único projeto, incluindo o projeto padrão `Base`.
 
@@ -71,10 +76,17 @@ O usuário poderá enviar:
 
 - arquivos
 - imagens
+- áudio
+- vídeo
 - texto
 - conteúdo do clipboard
 
-Os anexos pertencem ao chat.
+Os anexos pertencem ao chat e, opcionalmente, a uma mensagem específica
+(nulo enquanto o anexo ainda não foi enviado).
+
+O usuário também pode remover um anexo diretamente pela interface,
+fazendo com que a Ana deixe de considerá-lo. Remoção solicitada em
+conversa depende de tool calls e fica fora do MVP (ver `02-core.md`).
 
 ## Modelos
 
@@ -92,6 +104,35 @@ Posteriormente:
 - OpenAI Compatible APIs
 
 A escolha do provider deve acontecer pelas configurações da Ana.
+
+## Consumo de Tokens
+
+A Ana contabiliza internamente o consumo de tokens e o custo em USD, de
+forma silenciosa — sem interface própria no MVP (ver `09-projects.md` >
+Evolução Futura).
+
+Cada troca de mensagem com um provider registra tokens de entrada, cache
+(leitura e escrita de prompt cacheado somadas) e saída daquela chamada,
+além do custo em USD calculado na hora com o preço cadastrado do modelo
+— usando os preços de cache de leitura e escrita separadamente quando o
+provider distingue os dois (ex: Anthropic), mesmo que só o total
+agregado de tokens seja guardado. A partir disso, a Ana mantém em tempo
+real:
+
+- consumo de tokens e custo por provider;
+- consumo de tokens e custo por modelo;
+- consumo total de tokens e custo do projeto.
+
+Como o usuário pode trocar de provider a qualquer momento, o consumo do
+projeto soma o uso de todos os providers/modelos já utilizados nele.
+
+O custo é sempre calculado e armazenado em USD. A conversão para a moeda
+do projeto (padrão USD, configurável — ver `09-projects.md` >
+Configurações) acontece apenas ao servir a informação pela API.
+
+O registro é síncrono, feito no mesmo fluxo da chamada ao LLM, para que a
+API sempre sirva dados atualizados a um frontend reativo — não é uma
+tarefa assíncrona via Redis.
 
 ---
 
@@ -191,20 +232,8 @@ Serviços esperados:
 
 # Chat
 
-Chat representa uma conversa.
-
-Características:
-
-- título
-- data
-- status
-- project
-
-Status:
-
-- ativo
-- arquivado
-- excluído
+Chat representa uma conversa dentro de um projeto. Detalhes completos em
+`contracts/chat.md`.
 
 ---
 
@@ -251,6 +280,7 @@ capaz de:
 - buscar provider
 - montar prompt simples
 - chamar LLM
+- registrar consumo de tokens
 - persistir conversa
 - retornar resposta
 
@@ -260,9 +290,13 @@ MCP, automações e Deep Research permanecerão fora do escopo do MVP.
 ## Documentação complementar
 
 - architecture/01-system.md
-- architecture/04-frontend.md
+- architecture/02-core.md
 - architecture/03-backend.md
+- architecture/04-frontend.md
 - architecture/05-api.md
+- architecture/06-models.md
+- architecture/06b-services.md
 - architecture/07-database.md
 - architecture/08-redis.md
+- architecture/09-projects.md
 - architecture/integrations/openclaude.md

@@ -78,7 +78,6 @@ ana/
 │   └── redis/
 │ 
 ├── storage/
-│   ├── uploads/
 │   └── projects/
 │
 └── src/
@@ -132,12 +131,18 @@ ana/
         │   └── files/
         │
         ├── prompts/
+        │   └── avatar-expressions.json # por expressão do avatar: frase de
+        │                               # referência interna (a Ana decide,
+        │                               # nunca exibida), image_url e caption
+        │                               # (exibida ao usuário como tooltip)
+        │                               # (ver ui/dashboard.md > Main
+        │                               # > Avatar da Ana)
         ├── types/
         └── utils/
 ```
 
 > Itens marcados com `# futuro` estão fora do escopo do MVP (ver
-> `00-context.md` > Fora do Escopo) e não devem ser implementados nesta
+> `../00-context.md` > Fora do Escopo) e não devem ser implementados nesta
 > etapa — apenas as pastas sem marcação fazem parte do MVP.
 
 ## Componentes
@@ -252,7 +257,7 @@ evitando alterações estruturais na arquitetura existente.
 
 ## Geral
 
-- `00-context.md`
+- `../00-context.md`
 - `00-development.md`
 
 ## Arquitetura
@@ -261,6 +266,8 @@ evitando alterações estruturais na arquitetura existente.
 - `03-backend.md`
 - `04-frontend.md`
 - `05-api.md`
+- `06-models.md`
+- `06b-services.md`
 - `integrations/openclaude.md`
 - `07-database.md`
 - `08-redis.md`
