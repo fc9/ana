@@ -2,7 +2,7 @@
 
 Status: Draft  
 Versão: 0.1  
-Última atualização: 2026-07-03  
+Última atualização: 2026-07-12  
 Responsável: Arquitetura
 
 ---
@@ -140,16 +140,7 @@ O plano deve conter, no mínimo:
 - critérios de aceite;
 - estratégia de testes.
 
-O plano deve ser apresentado ao usuário.
-
-Nenhum desenvolvimento pode iniciar sem aprovação explícita do plano pelo
-usuário.
-
----
-
-### 4. Registro do Plano
-
-Após aprovação, o plano deve ser salvo em:
+O plano deve ser salvo em:
 
 ```
 docs/dev/plans/
@@ -161,9 +152,20 @@ Nome do arquivo:
 plan-[numero-sequencial]-[nome-da-branch].md
 ```
 
+Diferente de um registro posterior, o arquivo já nasce salvo nessa
+pasta **antes** de ser apresentado ao usuário — não depois da
+aprovação. O plano deve ser apresentado ao usuário para aprovação.
+Enquanto a aprovação não chega, cada ajuste pedido pelo usuário
+atualiza esse mesmo arquivo (nunca cria um segundo arquivo para a
+mesma etapa) — o conteúdo salvo reflete sempre a versão mais recente
+em discussão, aprovada ou não.
+
+Nenhum desenvolvimento pode iniciar sem aprovação explícita do plano pelo
+usuário.
+
 ---
 
-### 5. Desenvolvimento
+### 4. Desenvolvimento
 
 Após aprovação do plano:
 
@@ -178,7 +180,7 @@ Quando não for possível criar testes automatizados, o motivo deve ser registra
 
 ---
 
-### 6. Revisão
+### 5. Revisão
 
 Antes de considerar a implementação concluída, verificar:
 
@@ -190,7 +192,7 @@ Antes de considerar a implementação concluída, verificar:
 
 ---
 
-### 7. Validação do Usuário
+### 6. Validação do Usuário
 
 Após concluir o desenvolvimento:
 
@@ -206,7 +208,7 @@ Caso sejam solicitados ajustes:
 
 ---
 
-### 8. Encerramento
+### 7. Encerramento
 
 Após confirmação do usuário de que a tarefa foi concluída:
 
@@ -217,7 +219,7 @@ Após confirmação do usuário de que a tarefa foi concluída:
 
 ---
 
-### 9. Captura de Conhecimento
+### 8. Captura de Conhecimento
 
 Após a abertura do Pull Request, registrar os aprendizados obtidos durante o 
 desenvolvimento.
