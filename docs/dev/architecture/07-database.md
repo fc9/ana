@@ -149,9 +149,12 @@ ainda (ver `provider_credentials`/`provider_subscriptions`, abaixo, e
 `docs/dev/research/identificacao-unica-de-providers.md`).
 
 Campos-chave: `driver` (adaptador técnico — `openai`, `anthropic`,
-`openai_compatible`, `lmstudio`, `ollama`... — decide qual implementação
-de `services/llm/` trata as chamadas, ver `../architecture/06b-services.md`
-> Integrações > Providers) e `canonical_instance_id` (identifica a
+`openai_compatible`, `lmstudio`, `ollama` — `CHECK` restringe a esse
+conjunto fechado, mesmo padrão de `chats.status`/`messages.role`/
+`attachments.type`; adicionar um driver novo exige migration — decide
+qual implementação de `services/llm/` trata as chamadas, ver
+`../architecture/06b-services.md` > Integrações > Providers) e
+`canonical_instance_id` (identifica a
 **instalação/serviço**, não a conta — `'official'` para serviços únicos
 na nuvem, endpoint normalizado ou `server_instance_id` para self-hosted).
 `UNIQUE (driver, canonical_instance_id)` — duas contas diferentes do
@@ -291,10 +294,14 @@ fonte de preço da Ana; não existe mais `price_source` (só uma forma de
 obter o preço: consultar esta tabela via
 `../architecture/06b-services.md` > ModelPriceService).
 
-Campos-chave: `driver` + `provider_ref` (`UNIQUE`) — chaveada pela
-identidade **técnica e portável** do modelo, não pelo `provider_id` de
-uma instância específica: um preço já cadastrado sobrevive à exclusão/
-recadastro do provider dono, e é compartilhado entre instalações
+Campos-chave: `driver` (mesmo `CHECK` fechado de `providers.driver` —
+sem FK aqui pra validar o valor, um erro de digitação faria
+`ModelPriceService.get_price` nunca encontrar a linha, preço
+silenciosamente zero, sem sinal de erro) + `provider_ref` (`UNIQUE`) —
+chaveada pela identidade **técnica e portável** do modelo, não pelo
+`provider_id` de uma instância específica: um preço já cadastrado
+sobrevive à exclusão/recadastro do provider dono, e é compartilhado
+entre instalações
 diferentes do mesmo driver que sirvam o mesmo `provider_ref` (ex: dois
 servidores `openai_compatible` espelhando o mesmo modelo). Preço por 1K
 tokens de entrada, saída, e **dois** preços de cache — leitura
@@ -400,11 +407,15 @@ Contract: `../contracts/chat.md`.
 Relacionamentos: pertence a 1 project; pertence a 0 ou 1 topic (FK
 anulável, futuro); agrupa N messages; agrupa N attachments.
 
-Campos-chave: título, status (active, archived, deleted), `pinned_at`
-(anulável — não-nulo quando o chat está favoritado, ver
-`../architecture/ui/dashboard.md` > Item da lista de Chats). Ordenação
-de favoritados: mais recente favoritado primeiro (`ORDER BY pinned_at
-DESC NULLS LAST`).
+Campos-chave: título (`title`, anulável — `NULL` só durante a janela
+interna de `MessageService.start_chat`, entre criar a linha e
+`ChatService.generate_title` rodar; nunca fica `NULL` de fato pro
+Frontend, já que uma falha nesse meio-tempo descarta o chat inteiro,
+ver `06b-services.md` > MessageService), status (active, archived,
+deleted), `pinned_at` (anulável — não-nulo quando o chat está
+favoritado, ver `../architecture/ui/dashboard.md` > Item da lista de
+Chats). Ordenação de favoritados: mais recente favoritado primeiro
+(`ORDER BY pinned_at DESC NULLS LAST`).
 
 Índice recomendado: `(project_id, status)`, para listagem de chats
 ativos por projeto.

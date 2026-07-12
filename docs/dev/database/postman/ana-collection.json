@@ -1341,6 +1341,33 @@
 								}
 							],
 							"body": "{\n  \"active_model\": {\n    \"provider_id\": \"{{provider_id}}\",\n    \"model_ref\": \"claude-opus-legacy\",\n    \"provider_model_id\": null,\n    \"status\": \"removed\"\n  },\n  \"provider_order_updated_at\": \"2026-07-09T08:00:00Z\",\n  \"providers\": [\n    {\n      \"id\": \"{{provider_id}}\",\n      \"display_name\": \"OpenAI\",\n      \"available\": true,\n      \"models\": [\n        {\n          \"id\": \"{{provider_model_id}}\",\n          \"provider_ref\": \"gpt-5-2026-01-15\",\n          \"name\": \"GPT-5\"\n        }\n      ]\n    }\n  ]\n}"
+						},
+						{
+							"name": "200 OK - sem modelo ativo",
+							"originalRequest": {
+								"method": "GET",
+								"url": {
+									"raw": "{{base_url}}/projects/{{project_id}}/provider-stack",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"projects",
+										"{{project_id}}",
+										"provider-stack"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"body": "{\n  \"active_model\": null,\n  \"provider_order_updated_at\": null,\n  \"providers\": [\n    {\n      \"id\": \"{{provider_id}}\",\n      \"display_name\": \"OpenAI\",\n      \"available\": true,\n      \"models\": [\n        {\n          \"id\": \"{{provider_model_id}}\",\n          \"provider_ref\": \"gpt-5-2026-01-15\",\n          \"name\": \"GPT-5\"\n        }\n      ]\n    }\n  ]\n}"
 						}
 					]
 				}

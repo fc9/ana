@@ -6,7 +6,7 @@
 --
 -- language_id é preferência global do usuário, usada em toda a Ana
 -- (futuramente também na UI) — ver contracts/language.md. Moeda NÃO
--- fica aqui: é configuração por projeto (ver 07-projects.sql). Sem
+-- fica aqui: é configuração por projeto (ver 07-configs.sql). Sem
 -- DEFAULT no banco (não é possível referenciar uma linha de seed em um
 -- DEFAULT de coluna) — a aplicação atribui 'en' na criação do usuário.
 CREATE TABLE users (

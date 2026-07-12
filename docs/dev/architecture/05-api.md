@@ -155,7 +155,10 @@ esvaziar a última credencial de um provider (ver
   garantida
 - `POST /providers` — registrar/assinar um provider: `project_id`,
   `driver`, `base_url` (quando aplicável ao `driver`), `secret`,
-  `is_private`. Valida o acesso contra o provider antes de tocar o
+  `is_private`, `is_external` (opcional — sem informar, o Backend
+  sugere um default por `driver`, só considerado quando o provider
+  ainda não existe, ver `../contracts/provider.md`). Valida o acesso
+  contra o provider antes de tocar o
   banco (`400`/`502` se inválido); se o provider/credencial já
   existirem, **não** cria nem altera nada — só assina, e a resposta
   informa como a credencial já estava registrada (pública ou privada).
@@ -169,6 +172,12 @@ esvaziar a última credencial de um provider (ver
 - `GET /providers/{id}`
 
 ## Provider Credentials
+
+Sem UI própria no MVP — editar uma credencial cadastrada viveria em "AI
+Configs" (ToolBar > Configs), que está **bloqueado por hardcode no MVP**
+(ver `../architecture/ui/dashboard.md` > ToolBar); o endpoint abaixo já
+existe pronto (só chamável via API direta por enquanto) pra quando esse
+bloqueio for removido.
 
 - `PATCH /provider-credentials/{id}` — editar uma credencial: `project_id`
   (de quem edita — precisa já ter assinatura pra essa credencial,
@@ -288,8 +297,12 @@ ProviderCacheService).
   `available` por provider, resolvida contra a credencial que esse
   projeto usaria), o modelo ativo resolvido (`provider_id`, `model_ref`,
   e um `status`: `normal`/`unavailable`/`removed` — ver
-  `../architecture/06b-services.md` > `ProviderCacheService.resolve_active_model`),
-  e `provider_order_updated_at` (carimbo de versão). Sem ordem gravada
+  `../architecture/06b-services.md` > `ProviderCacheService.resolve_active_model`;
+  o campo `active_model` vem `null` por inteiro quando o projeto nunca
+  teve modelo ativo — `configs.active_provider_id IS NULL`, não
+  tratado como falha, ver `../contracts/config.md` > Modelo ativo
+  removido ou indisponível), e `provider_order_updated_at` (carimbo de
+  versão). Sem ordem gravada
   ainda (`configs.provider_order IS NULL`): ordena providers por
   `display_name` (alfabético), sem persistir esse fallback. Chamado no
   carregamento do projeto (novo ou reaberto) e sempre que o Frontend
@@ -487,17 +500,23 @@ em `06b-services.md`.
 - `../contracts/`
 - `../contracts/api-payloads.md` — payload/response de cada endpoint,
   campo a campo
-- `../contracts/attachment-mime-types.md` — tipos MIME aceitos para
-  anexo
+- `../contracts/user.md`
+- `../contracts/currency.md`
+- `../contracts/language.md`
 - `../contracts/project.md`
 - `../contracts/config.md`
 - `../contracts/chat.md`
 - `../contracts/message.md`
+- `../contracts/attachment.md`
+- `../contracts/attachment-mime-types.md` — tipos MIME aceitos para
+  anexo
 - `../contracts/provider.md`
 - `../contracts/provider-credential.md`
 - `../contracts/provider-subscription.md`
 - `../contracts/provider-model.md`
 - `../contracts/model-price.md`
+- `../contracts/token-usage.md`
+- `../contracts/token-usage-totals.md`
 
 ## Postman
 

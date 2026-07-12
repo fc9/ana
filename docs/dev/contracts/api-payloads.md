@@ -707,6 +707,26 @@ carregamento do projeto (novo ou reaberto) e sempre que o Frontend
 recebe o aviso `provider_stack` via WebSocket — nunca por sugestão
 própria.
 
+Um quarto caso, **sem modelo ativo** (`configs.active_provider_id
+IS NULL` — projeto que nunca escolheu um modelo), não é um `status` a
+mais: `active_model` vem `null` por inteiro, já que não há
+`provider_id`/`model_ref` nenhum gravado pra exibir. Não é tratado como
+falha (ver `../contracts/config.md` > Modelo ativo removido ou
+indisponível) — na prática o Frontend nem chega a mostrar aviso algum,
+só um dropdown convidando a escolher o primeiro modelo:
+
+```json
+{
+  "active_model": null,
+  "provider_order_updated_at": null,
+  "providers": [
+    { "id": "66666666-6666-6666-6666-666666666666", "display_name": "OpenAI", "available": true, "models": [
+      { "id": "77777777-7777-7777-7777-777777777777", "provider_ref": "gpt-5-2026-01-15", "name": "GPT-5" }
+    ] }
+  ]
+}
+```
+
 ---
 
 # 15. Chats
@@ -1145,13 +1165,13 @@ estrutura zerada, nunca um erro):
     "symbol": "$"
   },
   "tokens": { "input": 12400, "output": 3200, "total": 15600 },
-  "cost": { "input": -0.0155, "cache": -0.0004, "output": -0.032, "total": -0.0479 },
+  "cost": { "input": 0.0155, "cache": 0.0004, "output": 0.032, "total": 0.0479 },
   "timeline": [
     {
       "provider_model_id": "77777777-7777-7777-7777-777777777777",
       "name": "gpt-5",
       "percent": 62.5,
-      "cost_usd": -0.03,
+      "cost_usd": 0.03,
       "current_price": {
         "input_price_per_1k": 1.25,
         "cache_read_price_per_1k": 0.125,
@@ -1163,7 +1183,7 @@ estrutura zerada, nunca um erro):
       "provider_model_id": "eeeeeeee-eeee-eeee-eeee-eeeeeeeeeeee",
       "name": "claude-sonnet-5",
       "percent": 37.5,
-      "cost_usd": -0.0179,
+      "cost_usd": 0.0179,
       "current_price": null
     }
   ]

@@ -8,8 +8,8 @@
 -- O id desta tabela É o uuid usado no manifesto ".ana/manifest.json"
 -- (ver 09-projects.md) — não há coluna de manifesto separada.
 --
--- Moeda, provider e modelo NÃO ficam aqui: vivem em project_configs
--- (ver 07-project-configs.sql), que também resolve a dependência
+-- Moeda, provider e modelo NÃO ficam aqui: vivem em configs
+-- (ver 07-configs.sql), que também resolve a dependência
 -- circular entre projects/providers/provider_models. Idioma também não
 -- fica aqui: é preferência global do usuário (ver users.language_id).
 --

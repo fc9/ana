@@ -19,11 +19,18 @@ Definir a arquitetura geral do frontend da Ana.
 
 - gerenciamento de chats;
 - gerenciamento de projects;
-- gerenciamento de providers e modelos (`provider_models`), incluindo
-  cadastro e preço por 1K tokens;
-- exibição da pilha ordenada de Provider/Modelo no dropdown do Header,
-  incluindo reordenação local e sincronização com o Backend (ver
-  `ui/dashboard.md` > Header > Dropdown de Provider/Modelo);
+- gerenciamento de providers e modelos (`provider_models`) — só
+  catálogo (cadastro/edição/exclusão); preço por 1K tokens não é
+  cadastrado pelo Frontend no MVP, fica centralizado no Backend
+  (`ModelPriceService`), sem tela própria ainda (ver `06b-services.md`
+  > ModelPriceService e `05-api.md` > Model Prices);
+- exibição da pilha ordenada de Provider/Modelo no dropdown do Header
+  — sempre solicitada ao Backend (`GET`), nunca reordenada localmente:
+  toda ação que possa afetá-la (trocar de projeto, cadastrar/editar/
+  excluir provider, trocar de modelo) só dispara uma nova busca ou
+  aguarda o aviso `provider_stack` via WebSocket, nunca uma
+  reordenação feita no Frontend (ver `ui/dashboard.md` > Header >
+  Dropdown de Provider/Modelo);
 - configurações: moeda do projeto, idioma do usuário;
 - envio de mensagens;
 - upload e remoção de anexos;
@@ -197,10 +204,17 @@ Planejado adicionar features para:
   > Consumo de Tokens);
 - gestão de git branches e PRs (no futuro) — respeitando as regras de
   segurança da Ana com git (nunca mexe em commit/branch que não é dela,
-  nunca aprova PR, só abre — ver `09-projects.md` > Evolução Futura).
+  nunca aprova PR, só abre — ver `09-projects.md` > Evolução Futura);
+- tela de Settings, incluindo: edição de credencial já cadastrada
+  ("AI Configs", hoje bloqueada por hardcode no ToolBar — ver
+  `ui/dashboard.md` > ToolBar) e cadastro de preço por 1K tokens por
+  modelo (chamando `ModelPriceService.set_price`, já pronto no
+  Backend — ver `06b-services.md` > Evolução Futura e
+  `../contracts/model-price.md`).
 
-Essa funcionalidade não faz parte do MVP, embora o modelo UI da mesma
-possa ser providenciado de antemão para testes com dados mockados.
+Essas funcionalidades não fazem parte do MVP, embora o modelo UI das
+mesmas possa ser providenciado de antemão para testes com dados
+mockados.
 
 ---
 
@@ -226,3 +240,7 @@ possa ser providenciado de antemão para testes com dados mockados.
 - `10-resilience.md`
 - `11-search.md`
 - `ui/dashboard.md`
+
+## Contratos
+
+- `../contracts/`

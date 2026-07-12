@@ -57,7 +57,7 @@ Este documento não define:
 ## Currency
 
 Model: `id`, `code`, `name`, `symbol`, `rate_to_usd`, `is_active`,
-`created_at`, `updated_at`.
+`created_at`, `updated_at` (ver `../contracts/currency.md`).
 
 Schemas: `CurrencyRead`. Sem `Create`/`Update` — lista fixa via seed,
 sem endpoint de escrita (ver `05-api.md` > Currencies).
@@ -65,13 +65,14 @@ sem endpoint de escrita (ver `05-api.md` > Currencies).
 ## Language
 
 Model: `id`, `code`, `name`, `endonym`, `is_active`, `created_at`,
-`updated_at`.
+`updated_at` (ver `../contracts/language.md`).
 
 Schemas: `LanguageRead`. Sem `Create`/`Update`, mesmo motivo de Currency.
 
 ## User
 
-Model: `id`, `language_id`, `name`, `created_at`, `updated_at`.
+Model: `id`, `language_id`, `name`, `created_at`, `updated_at` (ver
+`../contracts/user.md`).
 Relacionamento: `language` (Language), `projects` (list[Project]).
 
 Schemas: `UserRead`, `UserUpdate` (`name`, `language_id`) — usados em
@@ -118,7 +119,7 @@ Schemas: `ProviderCredentialRead` (inclui `secret_hint`; nunca
 isolado: uma credencial só nasce via `ProviderService.register` (junto
 de uma assinatura, ver `06b-services.md`); `ProviderCredentialUpdate`
 (`secret` opcional — string em texto puro, cifrada pela Service antes
-de persistir, nunca chega a existir como campo de Model — , `is_private`
+de persistir, nunca chega a existir como campo de Model —, `is_private`
 opcional, `project_id` do editor) — usado em
 `PATCH /provider-credentials/{id}`, exige o editor já ter uma
 assinatura prévia para essa credencial (ver `../contracts/provider-credential.md`).
@@ -185,7 +186,8 @@ Route pública ainda.
 ## Project
 
 Model: `id`, `user_id`, `name`, `path`, `processing_chat_id`, `status`,
-`last_accessed_at`, `created_at`, `updated_at`. `processing_chat_id` é
+`last_accessed_at`, `created_at`, `updated_at` (ver
+`../contracts/project.md`). `processing_chat_id` é
 a trava de envio por projeto (ver `07-database.md` > projects e
 `../architecture/ui/dashboard.md` > Main > Bloqueio de envio durante
 processamento) — não referencia `Chat` via relationship do ORM (sem FK
@@ -248,7 +250,10 @@ lidos/escritos por `ConfigRead`/`ConfigUpdate` — têm Schema próprio,
 só leitura: `ProviderStackRead` (pilha de providers ordenados, cada um
 com seus modelos aninhados na ordem do cache mais uma flag
 `available`; o modelo ativo resolvido, com `status`:
-`normal`/`unavailable`/`removed`; e `provider_order_updated_at`) —
+`normal`/`unavailable`/`removed`, ou `active_model` inteiro `null`
+quando o projeto nunca teve modelo ativo (`active_provider_id IS
+NULL` — ver `../contracts/config.md` > Modelo ativo removido ou
+indisponível); e `provider_order_updated_at`) —
 usado em `GET /projects/{id}/provider-stack` (ver `05-api.md` >
 Provider Stack e `06b-services.md` > ProviderCacheService). Sem
 `ProviderStackUpdate`: a ordenação nunca é escrita pelo Frontend, é
@@ -258,9 +263,15 @@ colateral da troca de modelo ativo.
 ## Chat
 
 Model: `id`, `project_id`, `title`, `status`, `pinned_at`,
-`created_at`, `updated_at`. `pinned_at` é anulável — não-nulo quando o
-chat está favoritado (ver `../architecture/ui/dashboard.md` > Item da
-lista de Chats). `topic_id` existe na tabela mas não é mapeado no
+`created_at`, `updated_at` (ver `../contracts/chat.md`). `title` é
+anulável no banco — só fica
+`NULL` durante a janela interna de `MessageService.start_chat` (linha
+criada antes de `ChatService.generate_title` rodar); `ChatRead` nunca
+serializa um chat com `title` ausente, já que uma falha nesse
+meio-tempo descarta a linha inteira (ver `06b-services.md` >
+MessageService). `pinned_at` é anulável — não-nulo quando o chat está
+favoritado (ver `../architecture/ui/dashboard.md` > Item da lista de
+Chats). `topic_id` existe na tabela mas não é mapeado no
 Model ainda — coluna reservada para quando Topic existir (ver
 `07-database.md` > chats). Relacionamento: `project` (Project),
 `messages` (list[Message]). Sem relacionamento direto com Attachment —
@@ -310,8 +321,8 @@ endpoints com respostas ligeiramente diferentes (ver
 
 ## Attachment
 
-Model: `id`, `message_id`, `type`, `storage_path`, `created_at`.
-`message_id` nunca é nulo — a linha só é criada no momento do envio da
+Model: `id`, `message_id`, `type`, `storage_path`, `created_at` (ver
+`../contracts/attachment.md`). `message_id` nunca é nulo — a linha só é criada no momento do envio da
 mensagem (mesma transação, ver `06b-services.md` >
 AttachmentService/MessageService). Chat e projeto são derivados via
 `message.chat_id`/`chat.project_id`, sem coluna direta aqui.
@@ -342,7 +353,8 @@ usado em `GET /limits` (ver `05-api.md` > Limits e `src/.env.example`).
 ## TokenUsage / TokenUsageTotals
 
 Model de cada um, espelhando `07-database.md` > token_usage /
-token_usage_totals campo a campo.
+token_usage_totals campo a campo (ver `../contracts/token-usage.md` e
+`../contracts/token-usage-totals.md`).
 
 Sem Schema `Read` próprio — nunca expostos linha a linha pela API.
 Escritos exclusivamente por `TokenUsageService` (ver `06b-services.md`).
@@ -373,8 +385,8 @@ não devem retornar Schemas — isso é responsabilidade da Route.
 ## Routes
 
 Toda resposta HTTP serializa a partir de um Schema `Read`, nunca do
-Model diretamente (evita vazar colunas internas, ex: `secret` de
-`ProviderCredential`).
+Model diretamente (evita vazar colunas internas, ex: `encrypted_secret`
+de `ProviderCredential`).
 
 ---
 
@@ -414,3 +426,18 @@ Model diretamente (evita vazar colunas internas, ex: `secret` de
 - `../contracts/`
 - `../contracts/api-payloads.md` — payload/response de cada endpoint,
   campo a campo
+- `../contracts/user.md`
+- `../contracts/currency.md`
+- `../contracts/language.md`
+- `../contracts/project.md`
+- `../contracts/config.md`
+- `../contracts/chat.md`
+- `../contracts/message.md`
+- `../contracts/attachment.md`
+- `../contracts/provider.md`
+- `../contracts/provider-credential.md`
+- `../contracts/provider-subscription.md`
+- `../contracts/provider-model.md`
+- `../contracts/model-price.md`
+- `../contracts/token-usage.md`
+- `../contracts/token-usage-totals.md`

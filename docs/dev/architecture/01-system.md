@@ -110,8 +110,9 @@ ana/
     │   ├── providers/
     │   │   ├── openai/
     │   │   ├── anthropic/
-    │   │   ├── lmstudio/  # futuro
-    │   │   └── ollama/    # futuro
+    │   │   ├── openai_compatible/
+    │   │   ├── lmstudio/
+    │   │   └── ollama/
     │   │
     │   ├── openclaude/ # futuro
     │   └── mcp/        # futuro — fora do escopo do MVP
@@ -169,10 +170,11 @@ API (não é um serviço Docker próprio). Detalhes em `02-core.md`.
 ### Integrações
 
 Camada de comunicação com serviços externos: providers de LLM (OpenAI,
-Anthropic no MVP). OpenClaude é a primeira integração prevista após o MVP
-— a forma de aproveitamento ainda está em análise (ver
-`integrations/openclaude.md`). MCP e demais integrações vêm depois.
-Detalhes em `03-backend.md`.
+Anthropic, OpenAI-compatible, LM Studio, Ollama — ver
+`../contracts/provider.md`). OpenClaude é a primeira integração
+prevista após o MVP — a forma de aproveitamento ainda está em análise
+(ver `integrations/openclaude.md`). MCP e demais integrações vêm
+depois. Detalhes em `03-backend.md`.
 
 ---
 

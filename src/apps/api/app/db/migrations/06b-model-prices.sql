@@ -14,7 +14,10 @@
 -- docs/dev/research/identificacao-unica-de-providers.md). Por isso não
 -- há FK pra `providers`/`provider_models` aqui — a tabela é
 -- deliberadamente independente do ciclo de vida de qualquer provider
--- específico.
+-- específico. `driver` ainda tem o mesmo CHECK de 05-providers.sql
+-- (mesmo conjunto fechado de adaptadores) — sem FK pra validar o valor,
+-- um erro de digitação aqui faria `get_price` nunca encontrar a linha
+-- (preço silenciosamente zero, sem sinal de erro).
 --
 -- Sem linha cadastrada para um (driver, provider_ref) = preço zero até
 -- alguém cadastrar de verdade (hoje sem mecanismo de UI — tela em
@@ -38,7 +41,10 @@
 -- computado).
 CREATE TABLE model_prices (
     id                       UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    driver                   TEXT NOT NULL,
+    driver                   TEXT NOT NULL
+                             CHECK (driver IN ('openai', 'anthropic',
+                                                'openai_compatible',
+                                                'lmstudio', 'ollama')),
     provider_ref             TEXT NOT NULL,
     input_price_per_1k       NUMERIC(12,6) NOT NULL DEFAULT 0,
     cache_read_price_per_1k  NUMERIC(12,6) NOT NULL DEFAULT 0,

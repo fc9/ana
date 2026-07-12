@@ -15,11 +15,18 @@
 -- Se essa primeira mensagem falhar (Guard ou chamada ao LLM), a linha
 -- é descartada (hard delete) — do ponto de vista do usuário, o chat
 -- nunca existiu.
+--
+-- title é NULL por um instante real dentro do fluxo de start_chat: a
+-- linha é criada (passo 3) antes de ChatService.generate_title rodar
+-- (passo 6, depois da mensagem/anexos serem persistidos) — ver
+-- MessageService.start_chat. Nunca fica NULL de fato pro Frontend: se o
+-- fluxo falhar antes do passo 6, a linha inteira é descartada (hard
+-- delete), então nenhum chat sem título chega a ser lido pela API.
 CREATE TABLE chats (
     id          UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     project_id  UUID NOT NULL REFERENCES projects (id),
     topic_id    UUID NULL REFERENCES topics (id),
-    title       TEXT NOT NULL,
+    title       TEXT NULL,
     status      TEXT NOT NULL DEFAULT 'active'
                 CHECK (status IN ('active', 'archived', 'deleted')),
     pinned_at   TIMESTAMPTZ NULL,

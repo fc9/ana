@@ -449,7 +449,10 @@ Este documento deverá evoluir para contemplar:
 - `08-redis.md`
 - `09-projects.md`
 - `10-resilience.md`
+- `11-search.md`
+- `12-memory.md`
 - `integrations/openclaude.md`
+- `ui/dashboard.md`
 
 ## Base de Conhecimento
 

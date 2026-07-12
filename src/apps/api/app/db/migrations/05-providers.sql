@@ -10,10 +10,13 @@
 -- > ProviderService).
 --
 -- Identidade (ver docs/dev/research/identificacao-unica-de-providers.md):
--- `driver` é o adaptador técnico usado (ex: 'openai', 'anthropic',
--- 'openai_compatible', 'lmstudio', 'ollama' — decide qual implementação
--- de services/llm/ tratar as chamadas, ver
--- docs/dev/architecture/06b-services.md > Integrações > Providers).
+-- `driver` é o adaptador técnico usado (decide qual implementação de
+-- services/llm/ tratar as chamadas, ver
+-- docs/dev/architecture/06b-services.md > Integrações > Providers) —
+-- CHECK restringe ao conjunto de adaptadores que de fato existem em
+-- services/llm/ hoje; adicionar um driver novo (ex: um provider futuro)
+-- exige migration pra estender essa lista, mesmo padrão já usado em
+-- chats.status/messages.role/attachments.type.
 -- `canonical_instance_id` identifica a INSTALAÇÃO/serviço, não a conta:
 -- 'official' para serviços únicos na nuvem (openai, anthropic), ou o
 -- endpoint normalizado (ou um server_instance_id, quando o servidor
@@ -43,7 +46,10 @@
 -- — quem cadastra sabe melhor onde o serviço realmente está.
 CREATE TABLE providers (
     id                     UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    driver                 TEXT NOT NULL, -- 'openai', 'anthropic', 'openai_compatible', 'lmstudio', 'ollama'...
+    driver                 TEXT NOT NULL
+                           CHECK (driver IN ('openai', 'anthropic',
+                                              'openai_compatible',
+                                              'lmstudio', 'ollama')),
     canonical_instance_id  TEXT NOT NULL, -- 'official', ou endpoint normalizado/server_instance_id
     display_name           TEXT NOT NULL, -- rótulo de exibição, ex: 'OpenAI', 'LM Studio — Notebook'
     base_url               TEXT NULL,     -- endpoint real de chamada (self-hosted); NULL quando o driver já implica a URL

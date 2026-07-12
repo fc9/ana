@@ -3,9 +3,10 @@
 --
 -- Pertence sempre a 1 message (nunca nulo) — a linha só é criada no
 -- momento do envio, na mesma transação da mensagem (ver
--- docs/dev/architecture/06b-services.md > MessageService.send_message).
--- Antes do envio, o arquivo já está salvo em disco (.ana/storage), mas
--- ainda sem linha em attachments — ver AttachmentService.upload.
+-- docs/dev/architecture/06b-services.md > MessageService.start_chat/
+-- send_message). Antes do envio, o arquivo já está salvo em disco
+-- (.ana/storage), mas ainda sem linha em attachments — ver
+-- AttachmentService.upload/resolve_staged.
 -- Chat e projeto do anexo são derivados via message_id ->
 -- messages.chat_id -> chats.project_id; não há chat_id/project_id
 -- diretos aqui (evita redundância).

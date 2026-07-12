@@ -993,6 +993,13 @@ Mesmas dimensões, em US$, com uma linha a mais:
 - **Saídas** — custo de `output_tokens`;
 - **Total** — soma das três linhas acima.
 
+Valores exibidos com sinal negativo (ex: "-$0.03"), convenção só
+**visual** do Frontend para indicar gasto — `cost_usd` em si (API,
+banco) é sempre não-negativo, resultado de uma soma de produtos não-
+negativos (ver `../06b-services.md` >
+`TokenUsageService.calculate_cost`); o sinal nunca é persistido nem
+trafega pela API, é aplicado só na hora de renderizar.
+
 ## Bloco Distribuição
 
 - barra horizontal que representa graficamente a **linha do tempo de
@@ -1033,9 +1040,14 @@ Tabela de 3 colunas (↑ Entrada, ↓ Saída, Total) e 3 linhas:
    exata em qualquer caso, com ou sem `current_price` — é sempre a soma do que
    cada chamada realmente custou na época, nunca recalculada com o
    preço atual (ver `../../contracts/token-usage-totals.md`);
-2. **Tokens** — contagem de tokens de entrada, saída e total;
-3. **Custo** — custo em US$ de entrada, saída e total (valores
-   negativos, indicando gasto).
+2. **Tokens** — contagem de tokens de entrada, saída e total (cache não
+   entra aqui, mesmo critério do bloco Tokens, acima);
+3. **Custo** — custo em US$ de entrada, saída e total; custo de cache
+   aparece como sub-informação sob a coluna Entrada, mesmo padrão da
+   linha Preço acima (ex: "+cache $0.0004") — a tabela tem só 3 colunas,
+   sem uma dedicada a cache. Valores exibidos com sinal negativo, mesma
+   convenção visual do bloco Estimativa de Custos, acima (não reflete o
+   valor real da API/banco, que é sempre não-negativo).
 
 ---
 

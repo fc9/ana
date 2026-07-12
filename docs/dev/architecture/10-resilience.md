@@ -71,7 +71,7 @@ Para qualquer cenário de falha (catalogados abaixo), a Ana deve:
 | Memória recuperou coisa errada                                    | Futuro | Memória fora do MVP |
 | Execução de script bloqueada pelo sistema                         | Futuro | Depende de shell/tools (fora do MVP) |
 | Comando travou                                                    | Futuro | Idem |
-| Modelo local ficou lento                                          | Futuro | LM Studio/Ollama são "posteriormente" (ver `../00-context.md` > Modelos) |
+| Modelo local ficou lento                                          | Futuro | Latência/timeout não é monitorado no MVP, só disponibilidade (ver `06b-services.md` > ProviderCacheService) — afeta qualquer provider, local ou externo |
 | Ação parcialmente aplicada por falta de escopo/disco/internet      | Futuro | Depende de operações de arquivo (fora do MVP) |
 | Reverter/amend do commit de uma tarefa                            | Futuro | Depende da Ana editar arquivos via git (ver `09-projects.md` > Evolução Futura) |
 
@@ -98,9 +98,11 @@ WebSocket), com mensagens tipadas:
   `06b-services.md` > MessageService);
 - `provider_stack` — já concreto no MVP: dispara só quando a ordenação
   ou a disponibilidade de algum provider/modelo visível ao projeto
-  realmente mudou (reordenação pelo usuário, provider cadastrado/
-  removido, ou checagem de disponibilidade que encontrou diferença —
-  nunca à toa numa checagem sem novidade), via
+  realmente mudou (troca de modelo que reordena a pilha internamente —
+  nunca uma reordenação feita pelo usuário no Frontend, ver
+  `../contracts/config.md` > Troca de Provider/Modelo —, provider
+  cadastrado/removido, ou checagem de disponibilidade que encontrou
+  diferença — nunca à toa numa checagem sem novidade), via
   `RealtimeService.broadcast_provider_stack`. É só um sinal (com
   `provider_order_updated_at` como carimbo de versão) — o Frontend é
   obrigado a buscar `GET /projects/{id}/provider-stack` de volta ao

@@ -1194,3 +1194,10 @@ internamente, por `ProjectService.create_project`; isso é esperado).
 - `../contracts/project.md`
 - `../contracts/config.md`
 - `../contracts/chat.md`
+- `../contracts/provider.md`
+- `../contracts/provider-credential.md`
+- `../contracts/provider-subscription.md`
+- `../contracts/provider-model.md`
+- `../contracts/model-price.md`
+- `../contracts/token-usage.md`
+- `../contracts/token-usage-totals.md`

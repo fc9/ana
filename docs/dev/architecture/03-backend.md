@@ -137,7 +137,8 @@ Deve permitir alternar entre:
 - OpenAI;
 - Anthropic;
 - OpenAI-compatible;
-- LM Studio futuramente.
+- LM Studio;
+- Ollama.
 
 Toda chamada deve retornar o consumo de tokens junto da resposta —
 entrada, saída, e cache de leitura/escrita separados quando o provider

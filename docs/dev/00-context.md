@@ -92,16 +92,11 @@ conversa depende de tool calls e fica fora do MVP (ver `02-core.md`).
 
 O modelo utilizado deve ser configurável.
 
-Inicialmente:
-
 - OpenAI
 - Anthropic
-
-Posteriormente:
-
+- OpenAI Compatible APIs
 - LM Studio
 - Ollama
-- OpenAI Compatible APIs
 
 A escolha do provider deve acontecer pelas configurações da Ana.
 
