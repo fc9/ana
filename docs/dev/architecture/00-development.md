@@ -210,19 +210,24 @@ Caso sejam solicitados ajustes:
 
 ### 7. Encerramento
 
-Após confirmação do usuário de que a tarefa foi concluída:
+Sem Pull Request — a integração à `main` é sempre por merge local
+(ver Captura de Conhecimento, abaixo), não por PR no GitHub.
 
-1. Abrir Pull Request para `main`;
-2. Incluir um resumo da implementação;
-3. Listar os arquivos alterados;
-4. Descrever impactos relevantes.
+Após confirmação do usuário de que a tarefa foi concluída, apresentar
+um resumo da implementação:
+
+1. objetivo cumprido;
+2. arquivos alterados;
+3. impactos relevantes.
+
+Informar o usuário quando esse resumo estiver concluído.
 
 ---
 
 ### 8. Captura de Conhecimento
 
-Após a abertura do Pull Request, registrar os aprendizados obtidos durante o 
-desenvolvimento.
+Após apresentar o resumo (Encerramento, acima), registrar os
+aprendizados obtidos durante o desenvolvimento.
 
 O objetivo desta etapa é transformar a experiência adquirida durante a 
 implementação em documentação reutilizável para futuras tarefas.
@@ -313,7 +318,10 @@ Local:
 docs/dev/knowledge/recipes/
 ```
 
-Após concluir a captura de conhecimento, retornar para a branch principal (`main`).
+Os documentos de conhecimento são commitados na mesma branch da
+tarefa. Depois, mesclar a branch na `main` localmente (sem PR) e
+informar o usuário que a captura de conhecimento também está
+mesclada. Após concluir, retornar para a branch principal (`main`).
 
 ---
 
