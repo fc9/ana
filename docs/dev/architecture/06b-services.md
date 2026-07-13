@@ -53,8 +53,16 @@ Este documento não define:
 
 Único usuário no MVP (sem autenticação/multiusuário).
 
-- `get_current_user()` — usado em `GET /me`;
+- `get_current_user()` — usado em `GET /me`. *Get-or-create*: se
+  `users` ainda estiver vazia (nenhuma linha), cria a única linha na
+  hora (`language_id` = `Language` de código `en`, `name` = valor
+  padrão) — não existe seed dessa tabela via migration (diferente de
+  `currencies`/`languages`), já que o usuário só pode nascer em tempo
+  de execução;
 - `update_user(name?, language_id?)` — usado em `PATCH /me`.
+  `language_id`, se informado, precisa referenciar uma `Language`
+  existente — `404` caso contrário (mesmo padrão de id que não resolve
+  usado em outros pontos, ver `AttachmentService`, acima).
 
 ## ProviderService
 
