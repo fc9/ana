@@ -194,10 +194,12 @@ Antes de considerar a implementação concluída, verificar:
 
 ### 6. Validação do Usuário
 
-Após concluir o desenvolvimento:
+Após concluir o desenvolvimento e a revisão, o agente deve **parar o
+turno** — nunca prosseguir automaticamente para o Encerramento (abaixo)
+no mesmo turno:
 
-- informar o usuário;
-- aguardar validação.
+- informar o usuário que a implementação está pronta;
+- aguardar confirmação explícita do usuário antes de seguir adiante.
 
 Caso sejam solicitados ajustes:
 
@@ -211,7 +213,8 @@ Caso sejam solicitados ajustes:
 ### 7. Encerramento
 
 Sem Pull Request — a integração à `main` é sempre por merge local
-(ver Captura de Conhecimento, abaixo), não por PR no GitHub.
+(ver Captura de Conhecimento, abaixo), não por PR no GitHub. O merge
+em si é feito sempre pelo próprio usuário, nunca pelo agente.
 
 Após confirmação do usuário de que a tarefa foi concluída, apresentar
 um resumo da implementação:
@@ -319,9 +322,9 @@ docs/dev/knowledge/recipes/
 ```
 
 Os documentos de conhecimento são commitados na mesma branch da
-tarefa. Depois, mesclar a branch na `main` localmente (sem PR) e
-informar o usuário que a captura de conhecimento também está
-mesclada. Após concluir, retornar para a branch principal (`main`).
+tarefa. O agente não mescla a branch — só informa o usuário que a
+captura de conhecimento está commitada e que a branch está pronta
+para o merge, que o próprio usuário faz localmente (sem PR).
 
 ---
 
